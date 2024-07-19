@@ -36,7 +36,9 @@ return [
     ],
     'nasa' => [
         'api_key' => env('NASA_API_KEY'),
-        'apod_url' => 'https://api.nasa.gov/planetary/apod'
+        'apod_url' => 'https://api.nasa.gov/planetary/apod',
+        'epic_url' => 'https://epic.gsfc.nasa.gov/api/natural/date',
+        'epic_archive_url' => 'https://epic.gsfc.nasa.gov/archive/natural'
     ]
 
 ];
