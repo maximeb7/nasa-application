@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/vue3';
 
 import { ref } from "vue";
 import axios from "axios";
+import ApodService from "@/Services/ApodService.js";
 
 //Reactive variables for API response
 
@@ -12,17 +13,17 @@ const apodData = ref(null);
 const loading = ref(false);
 const error = ref(null);
 
+//Apod servcie
+const apodService = new ApodService();
 //Apod Methods
 const fetchApodData = async () => {
     loading.value = true;
     error.value = null;
 
     try {
-        const response = await axios.get('/api/apod');
-        apodData.value = response.data;
+        apodData.value = await apodService.fetchApodData();
     } catch (err) {
-        error.value = 'Failed to retrieve APOD Datas';
-        console.error(err);
+        error.value = err.message || 'Failed to retrieve APOD data';
     } finally {
         loading.value = false;
     }
