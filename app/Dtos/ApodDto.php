@@ -29,4 +29,18 @@ class ApodDto
     {
         return new self($data);
     }
+
+    public function toArray(): array
+    {
+        return [
+            'copyright' => $this->copyright,
+            'date' => $this->date,
+            'explanation' => $this->explanation,
+            'hdurl' => $this->hdurl,
+            'media_type' => $this->media_type,
+            'service_version' => $this->service_version,
+            'title' => $this->title,
+            'url' => $this->url,
+        ];
+    }
 }

@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ApodService\ApodService;
+use App\UseCases\GetApodUseCase;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\ApodResource;
 
 class AstronomyPictureOfTheDayController extends Controller
 {
 
-    protected $apodService;
+    protected $getApodUseCase;
 
-    public function __construct(ApodService $apodService)
+    /**
+     * Constructor to inject dependencies.
+     *
+     * @param GetApodUseCase $getApodUseCase
+     */
+    public function __construct(GetApodUseCase $getApodUseCase)
     {
-        $this->apodService = $apodService;
+        $this->getApodUseCase = $getApodUseCase;
     }
 
-    public function index(): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        $apodDTO = $this->apodService->getApod();
+        $apodDTO = $this->getApodUseCase->execute();
 
         if ($apodDTO === null) {
             return response()->json(['error' => 'Failed to retrieve APOD data.'], 500);
         }
 
-        return new JsonResponse(new ApodResource($apodDTO));
+        return response()->json($apodDTO->toArray());
     }
 }
