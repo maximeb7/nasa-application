@@ -6,7 +6,7 @@ use App\UseCases\GetApodUseCase;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\ApodResource;
 
-class AstronomyPictureOfTheDayController extends Controller
+class  AstronomyPictureOfTheDayController extends Controller
 {
 
     protected $getApodUseCase;

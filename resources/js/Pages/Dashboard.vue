@@ -76,5 +76,43 @@ const fetchApodData = async () => {
                 </div>
             </div>
         </div>
+
+        <div class="py-12">
+            <div class="max-w-10xl mx-auto sm:px-6 lg:px-3">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900">
+                        <div class="flex justify-around align-middle mt-4">
+                            <h2 class="text-2xl text-cyan-800"> Earth Polychromatic Imaging Camera</h2>
+                            <button @click="fetchApodData" class="bg-blue-500 text-white px-4 py-2 rounded">
+                                Get Earth Polychromatic Imaging Camera of a day
+                            </button>
+                        </div>
+
+
+                        <!-- Display loading spinner -->
+                        <div v-if="loading" class="mt-4 justify-center">
+                            <p class="text-2xl text-cyan-800">Loading...</p>
+                        </div>
+
+                        <!-- Display error message -->
+                        <div v-if="error" class="mt-4 text-red-500">
+                            <p>{{ error }}</p>
+                        </div>
+
+                        <!-- Display APOD data -->
+                        <div v-if="apodData" class="mt-4">
+                            <h3 class="text-xl font-bold">{{ apodData.title }}</h3>
+                            <p class="mt-2">{{ apodData.explanation }}</p>
+                            <div class="flex justify-center mt-4">
+                                <img :src="apodData.url" :alt="apodData.title" class="max-w-full h-auto" />
+                            </div>
+                            <p class="mt-2"><strong>Copyright:</strong> {{ apodData.copyright }}</p>
+                            <p class="mt-2"><strong>Date:</strong> {{ apodData.date }}</p>
+                            <a :href="apodData.hdurl" target="_blank" class="mt-2 text-blue-500">View HD Image</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </AuthenticatedLayout>
 </template>

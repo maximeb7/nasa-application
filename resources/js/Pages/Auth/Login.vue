@@ -5,7 +5,12 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm, router } from '@inertiajs/vue3';
+import axios from 'axios';
+import { onMounted } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+
+
 
 defineProps({
     canResetPassword: {
@@ -16,16 +21,39 @@ defineProps({
     },
 });
 
+onMounted(() => {
+    const page = usePage();
+    const token = page.props.flash.token;
+
+    if (token) {
+        localStorage.setItem('authToken', token);
+    }
+});
+
 const form = useForm({
     email: '',
     password: '',
     remember: false,
 });
 
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+const submit = async () => {
+    try {
+        const response = await axios.post(route('login'), form.data());
+
+        // Supposons que le token et l'URL de redirection sont dans response.data
+        const token = response.data.token;
+        const redirectUrl = response.data.redirect_url;
+
+        // Stocker le token dans le local storage
+        localStorage.setItem('authToken', token);
+
+        // Rediriger l'utilisateur
+        router.visit(redirectUrl);
+    } catch (error) {
+        if (error.response && error.response.data) {
+            form.setErrors(error.response.data.errors);
+        }
+    }
 };
 </script>
 

@@ -27,13 +27,25 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Crée un token d'API
+        $user = Auth::user();
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        // Vérifie si la requête est AJAX
+        if ($request->wantsJson()) {
+            return response()->json([
+                'token' => $token,
+                'redirect_url' => route('dashboard', [], false)
+            ]);
+        }
+
+        return redirect()->intended(route('dashboard', [], false));
     }
 
     /**
