@@ -7,9 +7,7 @@ import axios from "axios";
 import ApodService from "@/Services/ApodService.js";
 import EpicService from "@/Services/EpicService.js";
 import DatePicker  from 'vue3-datepicker';
-//Reactive variables for API response
 
-//
 const apodData = ref(null);
 const loading = ref(false);
 const loadingEpic = ref(false);
@@ -18,18 +16,14 @@ const selectedDate = ref(null);
 const today = new Date();
 const epicData = ref(null);
 
-//Apod servcie
 const apodService = new ApodService();
-//Epic Service
-
-
 //Apod Methods
 const fetchApodData = async () => {
     loading.value = true;
     error.value = null;
 
     try {
-        apodData.value = await ApodService.fetchApodData();
+        apodData.value = await apodService.fetchApodData();
     } catch (err) {
         error.value = err.message || 'Failed to retrieve APOD data';
     } finally {
