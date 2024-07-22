@@ -3,7 +3,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
 import { ref } from "vue";
-import axios from "axios";
 import ApodService from "@/Services/ApodService.js";
 import EpicService from "@/Services/EpicService.js";
 import DatePicker  from 'vue3-datepicker';
@@ -141,7 +140,7 @@ const isDateValid = (date) => {
                             <h3 class="text-xl font-bold">{{ epicData?.identifier }}</h3>
                             <p class="mt-2">{{ epicData?.caption }}</p>
                             <div class="flex justify-center mt-4">
-                                <img :src="epicData?.source" class="max-w-full h-auto" />
+                                <img :src="epicData?.source" alt="Epic Image" class="max-w-full h-auto" />
                             </div>
                         </div>
                     </div>

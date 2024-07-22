@@ -1,12 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
-
 const showingNavigationDropdown = ref(false);
 </script>
 
@@ -20,7 +17,7 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <img style="height: 5rem; width: 5rem;" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"/>
+                                <img alt="Nasa Logo" style="height: 5rem; width: 5rem;" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"/>
                             </div>
 
                             <!-- Navigation Links -->
