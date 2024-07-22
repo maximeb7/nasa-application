@@ -25,7 +25,7 @@ class EarthPolychromaticImagingCameraController extends Controller
         }
         $epicDto = $this->getEpicUseCase->execute($day, $month, $year);
 
-        if ($epicDto === null) {
+        if ($epicDto === "") {
             return response()->json(['error' => 'Failed to retrieve EPIC data.'], 500);
         }
 

@@ -21,7 +21,7 @@ class EpicService
      * @param string $year
      * @return EpicDto|null
      */
-    public function getEpic(string $day, string $month, string $year): ?EpicDto
+    public function getEpic(string $day, string $month, string $year): EpicDto|string
     {
         $epicUrl = $this->nasaService->getEpicUrl();
 

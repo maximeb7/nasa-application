@@ -14,7 +14,7 @@ class GetEpicUseCase
         $this->epicService = $epicService;
     }
 
-    public function execute(string $day, string $month, string $year): ?EpicDto
+    public function execute(string $day, string $month, string $year): EpicDto|string
     {
         return $this->epicService->getEpic($day, $month, $year);
     }
