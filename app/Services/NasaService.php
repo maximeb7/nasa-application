@@ -12,6 +12,7 @@ class NasaService implements NasaInterface
     protected string $epicUrl;
 
     protected  string $epicArchiveUrl;
+    protected string $marsRoverUrl;
 
     public function __construct()
     {
@@ -19,6 +20,7 @@ class NasaService implements NasaInterface
         $this->apodUrl = config('services.nasa.apod_url');
         $this->epicUrl = config('services.nasa.epic_url');
         $this->epicArchiveUrl = config('services.nasa.epic_archive_url');
+        $this->marsRoverUrl = config('services.nasa.mars_rover_url');
     }
 
     public function getApiKey(): string
@@ -42,5 +44,10 @@ class NasaService implements NasaInterface
     public function getEpicArchive(): string
     {
         return $this->epicArchiveUrl;
+    }
+
+    public function getMarsRoverUrl(): string
+    {
+        return $this->marsRoverUrl;
     }
 }

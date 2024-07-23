@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\UseCases\GetApodUseCase;
 use Illuminate\Http\JsonResponse;
-use App\Http\Resources\ApodResource;
 
 class  AstronomyPictureOfTheDayController extends Controller
 {

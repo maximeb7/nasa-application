@@ -10,4 +10,5 @@ interface NasaInterface
     public function getEpicUrl(): string;
 
     public function getEpicArchive(): string;
+    public function getMarsRoverUrl(): string;
 }
